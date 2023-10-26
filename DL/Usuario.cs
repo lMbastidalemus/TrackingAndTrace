@@ -11,6 +11,7 @@ public partial class Usuario
 
     public byte[] Password { get; set; } = null!;
 
+
     public int? IdRol { get; set; }
 
     public string Tipo { get; set; }
