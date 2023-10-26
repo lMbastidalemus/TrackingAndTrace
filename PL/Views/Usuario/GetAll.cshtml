@@ -33,7 +33,7 @@
                     <td>@usuario.ApellidoMaterno</td>
                     <td>@usuario.Rol.Tipo</td>
                     <td>
-                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Usuario", new {usuario.IdUsuario })" onclick="return confirm('¿Estas seguro de eliminar este registro?');">
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "UsuarioController", new {IdUsuario = usuario.IdUsuario })" onclick="return confirm('¿Estas seguro de eliminar este registro?');">
                             Eliminar
                         </a>
                     </td>

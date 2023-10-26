@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,8 @@ namespace BL
 
         public string UserName { get; set; }
 
-        public byte[] Password { get; set; }
+        public string Password { get; set; }    
+        public byte[] Passwords { get; set; }
 
         public BL.Rol Rol { get; set; }
 
@@ -38,6 +40,7 @@ namespace BL
         public static Usuario GetAllUsuario()
         {
             Usuario usuario = new Usuario();
+          
             try
             {
                 using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
@@ -51,7 +54,7 @@ namespace BL
                         {
 
                             usuario.UserName = item.UserName;
-                            usuario.Password = item.Password;
+                            usuario.Passwords = item.Password;
                             usuario.Email = item.Email;
                             usuario.Nombre = item.Nombre;
                             usuario.ApellidoPaterno = item.ApellidoPaterno;
@@ -81,6 +84,13 @@ namespace BL
         public static Usuario GetById(int IdUsuario)
         {
             Usuario usuario = new Usuario();
+            string messageString = usuario.Password;
+
+            //Convert the string into an array of bytes.
+            byte[] messageBytes = Encoding.UTF8.GetBytes(messageString);
+
+            //Create the hash value from the array of bytes.
+            usuario.Passwords = SHA256.HashData(messageBytes);
             try
             {
                 using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
@@ -89,7 +99,7 @@ namespace BL
                     if (query != null)
                     {
                         usuario.UserName = query.UserName;
-                        usuario.Password = query.Password;
+                        usuario.Passwords = query.Password;
                         usuario.Email = query.Email;
                         usuario.Nombre = query.Nombre;
                         usuario.ApellidoPaterno = query.ApellidoPaterno;
@@ -117,6 +127,13 @@ namespace BL
 
         public static Usuario Add(Usuario usuario)
         {
+            string messageString = usuario.Password;
+
+            //Convert the string into an array of bytes.
+            byte[] messageBytes = Encoding.UTF8.GetBytes(messageString);
+
+            //Create the hash value from the array of bytes.
+            usuario.Passwords = SHA256.HashData(messageBytes);
             try
             {
                 using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
@@ -147,6 +164,13 @@ namespace BL
 
         public static Usuario Update(Usuario usuario)
         {
+            string messageString = usuario.Password;
+
+            //Convert the string into an array of bytes.
+            byte[] messageBytes = Encoding.UTF8.GetBytes(messageString);
+
+            //Create the hash value from the array of bytes.
+            usuario.Passwords = SHA256.HashData(messageBytes);
             try
             {
                 using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())

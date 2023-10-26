@@ -40,10 +40,10 @@ namespace PL.Controllers
 
 
         [HttpPost]
-        public ActionResult Form(BL.Usuario usuario)
+        public ActionResult Form(Usuario usuario)
         {
 
-            if(usuario.IdUsuario == null)
+            if(usuario.IdUsuario == 0)
             {
                 usuario = BL.Usuario.Add(usuario);
                 if(usuario.Correct)
@@ -61,7 +61,7 @@ namespace PL.Controllers
         [HttpDelete]
         public ActionResult Delete(int IdUsuario)
         {
-            BL.Usuario usuario = BL.Usuario.Delete(IdUsuario);
+            Usuario usuario = BL.Usuario.Delete(IdUsuario);
             if (usuario.Correct)
             {
                 ViewBag.Mensaje = "Usuario eliminado correctamente";
