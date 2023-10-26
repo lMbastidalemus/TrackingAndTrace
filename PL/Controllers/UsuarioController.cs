@@ -7,6 +7,7 @@ namespace PL.Controllers
     public class UsuarioController : Controller
     {
         [HttpGet]
+
         public ActionResult GetAll()
         {
 
