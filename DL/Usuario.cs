@@ -11,10 +11,8 @@ public partial class Usuario
 
     public byte[] Password { get; set; } = null!;
 
-
     public int? IdRol { get; set; }
 
-    public string Tipo { get; set; }
     public string Email { get; set; } = null!;
 
     public string Nombre { get; set; } = null!;
@@ -24,4 +22,6 @@ public partial class Usuario
     public string ApellidoMaterno { get; set; } = null!;
 
     public virtual Rol? IdRolNavigation { get; set; }
+
+    public string Tipo { get; set; }
 }

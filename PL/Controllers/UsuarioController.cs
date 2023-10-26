@@ -20,10 +20,10 @@ namespace PL.Controllers
         [HttpGet]
         public ActionResult Form(int? IdUsuario)
         {
-            Usuario usuario = new Usuario();
-            usuario.Rol = new Rol();
+            BL.Usuario usuario = new BL.Usuario();
+            usuario.Rol = new BL.Rol();
             Rol resultRol = Rol.GetAllRol();
-            usuario.Rol.Roles = resultRol.Objects;
+          
 
             if(IdUsuario != null)
             {
@@ -31,10 +31,13 @@ namespace PL.Controllers
                 if (result.Correct)
                 {
                     usuario = (Usuario)result.Object;
-                    usuario.Rol.Roles = usuario.Rol.Objects;
+                    usuario.Rol.Roles = resultRol.Objects;
                 }
             }
-            usuario.Rol.Roles = resultRol.Objects;
+            
+                usuario.Rol.Roles = resultRol.Objects;
+            
+           
             return View(usuario);
         }
 
@@ -45,7 +48,7 @@ namespace PL.Controllers
 
             if(usuario.IdUsuario == 0)
             {
-                usuario = BL.Usuario.Add(usuario);
+                usuario= Usuario.Add(usuario);
                 if(usuario.Correct)
                 {
                     ViewBag.Mensaje = "Usuario agregado correctamente";
@@ -54,14 +57,27 @@ namespace PL.Controllers
                 {
                     ViewBag.Mensaje = "Error al agregar el usuario";
                 }
-               
+
+            }
+            else
+            {
+                usuario = BL.Usuario.Update(usuario);
+                if (usuario.Correct)
+                {
+                    ViewBag.Mensaje = "Usuario actualizado correctamente";
+                }
+                else
+                {
+                    ViewBag.Mensaje = "Error al actualizar el usuario";
+                }
             }
             return PartialView("Modal");
         }
-        [HttpDelete]
+       
         public ActionResult Delete(int IdUsuario)
         {
-            Usuario usuario = BL.Usuario.Delete(IdUsuario);
+            Usuario usuario = Usuario.Delete(IdUsuario);
+          
             if (usuario.Correct)
             {
                 ViewBag.Mensaje = "Usuario eliminado correctamente";
@@ -71,6 +87,34 @@ namespace PL.Controllers
                 ViewBag.Mensaje = "Error al eliminar el usuario";
             }
             return PartialView("Modal");
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Usuario usuario)
+        {
+            Usuario usuarioResult = BL.Usuario.GetByEmail(usuario);
+            usuarioResult.Rol = new Rol();
+            HttpContext.Session.GetString("Usuario");
+
+            if (usuarioResult.Correct)
+            {
+                Usuario usuarioIngresado = (Usuario)usuario.Object;
+               if(usuarioIngresado.Email == usuario.Email & usuarioIngresado.Passwords == usuario.Passwords)
+                {
+                    return RedirectToAction("GetAll", "Usuario");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Usuario");
+                }
+            }
+            return View();
         }
 
 

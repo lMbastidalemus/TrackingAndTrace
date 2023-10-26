@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    
+    @Html.HiddenFor(model => model.IdUsuario);
 
 <form class="form-control">
     <div class="row" style="margin-left:12rem">
