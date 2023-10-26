@@ -1,0 +1,45 @@
+﻿@model BL.Usuario
+
+<a class="btn btn-success" href="@Url.Action("Form", "Usuario")">Agregar</a>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Rol</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(BL.Usuario usuario in Model.Usuarios)
+            {
+
+                <tr>
+                    <td>
+                        <a class="btn btn-warning" href="@Url.Action("Form", "Usuario", new {usuario.IdUsuario})">Editar</a>
+                    </td>
+                    <td>@usuario.UserName</td>
+                    <td>@usuario.Password</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.ApellidoPaterno</td>
+                    <td>@usuario.ApellidoMaterno</td>
+                    <td>@usuario.Rol.Tipo</td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Usuario", new {usuario.IdUsuario })" onclick="return confirm('¿Estas seguro de eliminar este registro?');">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

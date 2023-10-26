@@ -1,0 +1,67 @@
+﻿@model BL.Usuario
+
+
+@using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+
+<form class="form-control">
+    <div class="row" style="margin-left:12rem">
+        <div class="col-md-3" >
+            @Html.LabelFor(model => model.UserName)
+            <br />
+            @Html.TextBoxFor(model => model.UserName)
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Password)
+            <br />
+            @Html.TextBoxFor(model => model.Password, new {@type="password"})
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.Rol.IdRol)
+            <br />
+            @Html.DropDownListFor(model => model.Rol.IdRol, new SelectList(Model.Rol.Roles,"IdRol", "Tipo"), "Seleccione un rol")
+        </div>
+    </div>
+
+    <div class="row" style="margin-left:20rem;margin-top:5rem">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Email)
+            <br />
+            @Html.TextBoxFor(model => model.Email)
+        </div>
+        <div class="col-md-2" style="margin-left:10rem">
+            @Html.LabelFor(model => model.Nombre)
+            <br />
+            @Html.TextBoxFor(model => model.Nombre)
+        </div>
+      
+       
+    </div>
+
+
+    <div class="row" style="margin-left:20rem; margin-top:5rem">
+       
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.ApellidoPaterno)
+            <br />
+            @Html.TextBoxFor(model => model.ApellidoPaterno)
+        </div>
+        <div class="col-md-2" style="margin-left:10rem">
+            @Html.LabelFor(model => model.ApellidoMaterno)
+            <br />
+            @Html.TextBoxFor(model => model.ApellidoMaterno)
+        </div>
+
+    </div>
+
+        <div class="row" style="margin-left:30rem">
+            <div class="col-md-6" style="padding:4rem">
+                <button type="submit" class="btn btn-success ">Agregar Usuario</button>
+
+            </div>
+           
+        </div>
+
+</form>
+}

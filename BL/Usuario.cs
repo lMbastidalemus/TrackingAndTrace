@@ -18,38 +18,189 @@ namespace BL
 
         public string UserName { get; set; }
 
-        public string Password { get; set; }
+        public byte[] Password { get; set; }
 
-        public int IdRol { get; set; }
+        public BL.Rol Rol { get; set; }
+
         public string Email { get; set; }
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
 
         public string ApellidoMaterno { get; set; }
-        public List<object> Objects{ get; set; }
 
+        public List<object> Usuarios { get; set; }
+        public List<object> Objects { get; set; }
+
+        public bool Correct { get; set; }
+        public object Object { get; set; }
+        public string Exception { get; set; }
 
         public static Usuario GetAllUsuario()
         {
-             Usuario usuario = new Usuario();
+            Usuario usuario = new Usuario();
             try
             {
                 using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
                 {
                     var query = context.Usuarios.FromSqlRaw($"GetAllUsuario");
-                    if(query != null ) { 
-                    
+                    if (query != null)
+                    {
+
                         usuario.Objects = new List<object>().ToList();
-                        foreach( var item in query )
+                        foreach (var item in query)
                         {
 
+                            usuario.UserName = item.UserName;
+                            usuario.Password = item.Password;
+                            usuario.Email = item.Email;
+                            usuario.Nombre = item.Nombre;
+                            usuario.ApellidoPaterno = item.ApellidoPaterno;
+                            usuario.ApellidoMaterno = item.ApellidoPaterno;
+                            usuario.Rol = new Rol();
+                            usuario.Rol.Tipo = item.Tipo;
+                            usuario.Objects.Add(usuario);
+
+                            
                         }
+                        usuario.Correct = true;
                     }
                 }
 
-            }catch(Exception ex) { 
-            
-            
+            }
+            catch (Exception ex)
+            {
+
+                usuario.Correct = false;
+                usuario.Exception = ex.Message;
+            }
+
+            return usuario;
+        }
+
+
+        public static Usuario GetById(int IdUsuario)
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
+                {
+                    var query = context.Usuarios.FromSqlRaw($"GetByIdUsuario '{IdUsuario}'").AsEnumerable().SingleOrDefault();
+                    if (query != null)
+                    {
+                        usuario.UserName = query.UserName;
+                        usuario.Password = query.Password;
+                        usuario.Email = query.Email;
+                        usuario.Nombre = query.Nombre;
+                        usuario.ApellidoPaterno = query.ApellidoPaterno;
+                        usuario.ApellidoMaterno = query.ApellidoPaterno;
+                        usuario.Rol = new Rol();
+                        usuario.Rol.Tipo = query.Tipo;
+                        usuario.Object = usuario;
+
+                        usuario.Correct = true;
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                usuario.Correct = false;
+                usuario.Exception = ex.Message;
+            }
+
+            return usuario;
+        }
+
+
+        public static Usuario Add(Usuario usuario)
+        {
+            try
+            {
+                using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
+                {
+                    var query = context.Database.ExecuteSqlRaw($"AddUsuario '{usuario.UserName}', '{usuario.Password}', '{usuario.Rol.IdRol}', '{usuario.Email}', '{usuario.Nombre}', '{usuario.ApellidoPaterno}', '{usuario.ApellidoMaterno}'");
+                    if (query >0)
+                    {
+                      
+                        usuario.Correct = true;
+
+                    }
+                    else
+                    {
+                        usuario.Correct = false;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                usuario.Correct = false;
+                usuario.Exception = ex.Message;
+            }
+
+            return usuario;
+        }
+
+        public static Usuario Update(Usuario usuario)
+        {
+            try
+            {
+                using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
+                {
+                    var query = context.Database.ExecuteSqlRaw($"UpdateUsuario '{usuario.IdUsuario}', '{usuario.UserName}', '{usuario.Password}', '{usuario.Rol.IdRol}', '{usuario.Email}', '{usuario.Nombre}', '{usuario.ApellidoPaterno}', '{usuario.ApellidoMaterno}'");
+                    if (query > 0)
+                    {
+
+                        usuario.Correct = true;
+
+                    }
+                    else
+                    {
+                        usuario.Correct = false;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                usuario.Correct = false;
+                usuario.Exception = ex.Message;
+            }
+
+            return usuario;
+        }
+
+        public static Usuario Delete(int IdUsuario)
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (DL.TrackingAndTraceNetCoreContext context = new TrackingAndTraceNetCoreContext())
+                {
+                    var query = context.Database.ExecuteSqlRaw($"DeleteUsuario '{IdUsuario}'");
+                    if (query > 0)
+                    {
+
+                        usuario.Correct = true;
+
+                    }
+                    else
+                    {
+                        usuario.Correct = false;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                usuario.Correct = false;
+                usuario.Exception = ex.Message;
             }
 
             return usuario;

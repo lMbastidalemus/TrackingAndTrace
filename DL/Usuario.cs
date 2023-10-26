@@ -13,6 +13,7 @@ public partial class Usuario
 
     public int? IdRol { get; set; }
 
+    public string Tipo { get; set; }
     public string Email { get; set; } = null!;
 
     public string Nombre { get; set; } = null!;
