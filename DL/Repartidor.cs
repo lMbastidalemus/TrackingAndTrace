@@ -19,7 +19,7 @@ public partial class Repartidor
 
     public DateTime FechaIngreso { get; set; }
 
-    public string Fotografia { get; set; } = null!;
+    public string? Fotografia { get; set; }
 
     public virtual ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
 

@@ -13,7 +13,7 @@ public partial class UnidadEntrega
 
     public string Marca { get; set; } = null!;
 
-    public DateTime AnioFabricacion { get; set; }
+    public int AnioFabricacion { get; set; }
 
     public int IdEstatusUnidad { get; set; }
 

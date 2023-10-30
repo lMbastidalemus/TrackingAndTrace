@@ -1,0 +1,45 @@
+﻿@model BL.Repartidor
+
+<a class="btn btn-success" href="@Url.Action("Form", "Repartidor")">Agregar</a>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                @* <th>Fotografia</th@* > *@
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Id Unidad</th>
+                <th>Numero Placa</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Fecha de ingreso</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(BL.Repartidor repartidor in Model.Repartidores)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-warning" href="@Url.Action("Form", "Repartidor", new {IdRepartidor = repartidor.IdRepartidor})">Editar</a>
+                    </td>
+                 @*    <td>@repartidor.Fotografia</td> *@
+                    <td>@repartidor.Nombre</td>
+                    <td>@repartidor.ApellidoPaterno</td>
+                    <td>@repartidor.ApellidoMaterno</td>
+                    <td>@repartidor.UnidadEntrega.IdUnidad</td>
+                    <td>@repartidor.UnidadEntrega.NumeroPlaca</td>
+                    <td>@repartidor.UnidadEntrega.Modelo</td>
+                    <td>@repartidor.UnidadEntrega.Marca</td>
+                    <td>@repartidor.FechaIngreso</td>
+                    <td>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Repartidor", new {IdRepartidor = repartidor.IdRepartidor})", onclick="return confirm('Estas seguro de eliminar?');">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

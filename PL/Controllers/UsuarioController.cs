@@ -99,13 +99,14 @@ namespace PL.Controllers
         public ActionResult Login(Usuario usuario)
         {
             Usuario usuarioResult = BL.Usuario.GetByEmail(usuario);
-            usuarioResult.Rol = new Rol();
-            HttpContext.Session.GetString("Usuario");
+            
 
             if (usuarioResult.Correct)
             {
                 Usuario usuarioIngresado = (Usuario)usuario.Object;
-               if(usuarioIngresado.Email == usuario.Email & usuarioIngresado.Passwords == usuario.Passwords)
+               
+                HttpContext.Session.SetString("Rol", usuarioIngresado.Rol.Tipo);
+                if (usuarioIngresado.Email == usuario.Email & usuarioIngresado.Passwords == usuario.Passwords)
                 {
                     return RedirectToAction("GetAll", "Usuario");
                 }
