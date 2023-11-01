@@ -56,7 +56,7 @@ namespace SL.Controllers
             }
         }
 
-        [Route("Add")]
+        [Route("")]
         [HttpPost]
         public IActionResult Add(Repartidor repartidor)
         {

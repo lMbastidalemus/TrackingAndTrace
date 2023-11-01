@@ -11,7 +11,7 @@ namespace DL
 
         public static string GetConnectionString()
         {
-            return "Server=LEMUSHUAWEI\\SQLEXPRESS; Database= TrackingAndTraceNetCore; TrustServerCertificate=True; Trusted_Connection=True; User ID=LEMUSHUAWEI\\lemus; Password=;";
+            return "Server=LAPTOP-7SN4MG5E; Database= TrackingAndTraceNetCore; TrustServerCertificate=True; Trusted_Connection=True; User ID=sa; Password=pass@word1;";
         }
     }
 }

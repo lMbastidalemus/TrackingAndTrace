@@ -20,4 +20,5 @@ public partial class UnidadEntrega
     public virtual EstatusUnidad IdEstatusUnidadNavigation { get; set; } = null!;
 
     public virtual ICollection<Repartidor> Repartidors { get; set; } = new List<Repartidor>();
+    public  string Estatus { get; set; }
 }

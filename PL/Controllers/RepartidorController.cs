@@ -70,14 +70,15 @@ namespace PL.Controllers
         public ActionResult Form(Repartidor repartidor)
         {
 
-            repartidor.Repartidores = new List<object>();
+           
             if (repartidor.IdRepartidor == 0)
             {
                 
                 using(var client = new HttpClient())
                 {
+                   
                     client.BaseAddress = new Uri("http://localhost:5019/api/Repartidor/");
-                    var task = client.PostAsJsonAsync<Repartidor>("Add/", repartidor);
+                    var task = client.PostAsJsonAsync<BL.Repartidor>("", repartidor);
                     task.Wait();
 
                     var taskResult = task.Result;
@@ -109,7 +110,7 @@ namespace PL.Controllers
                     {
                         ViewBag.Mensaje = "Departamento actualizado correctamente";
                        
-                    }
+                    } 
                     else
                     {
                         ViewBag.Mensaje = "Error al actualizar departamento";

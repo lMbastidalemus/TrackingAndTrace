@@ -1,0 +1,35 @@
+﻿@model BL.UnidadEntrega
+
+<div class="table">
+    <table class="table">
+        <thead>
+           <tr>
+                <th>Editar</th>
+            <th>Numero Placa</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Anio de Fabricacion</th>
+            <th>Estatus de la unidad</th>
+            <th>Eliminar</th>
+           </tr>
+        </thead>
+        <tbody>
+            @foreach (BL.UnidadEntrega unidadEntrega in Model.Unidades)
+            {
+                <tr>
+                    <td>
+                        <a  class="btn btn-warning" href="@Url.Action("Form", "UnidadEntrega", new {IdUnidad= unidadEntrega.IdUnidad})">Editar</a>
+                    </td>
+                    <td>@unidadEntrega.NumeroPlaca</td>
+                    <td>@unidadEntrega.Modelo</td>
+                    <td>@unidadEntrega.Marca</td>
+                    <td>@unidadEntrega.AnioFabricacion</td>
+                    <td>@unidadEntrega.EstatusUnidad.Estatus</td>
+                      <td>
+                        <a  class="btn btn-danger" href="@Url.Action("Delete", "UnidadEntrega", new {IdUnidad= unidadEntrega.IdUnidad})" onclick="return confirm('Seguro de eliminar?')">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

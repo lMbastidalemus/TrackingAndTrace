@@ -32,12 +32,17 @@ namespace BL
                 using (DL.TrackingAndTraceNetCoreContext context = new DL.TrackingAndTraceNetCoreContext())
                 {
                     var query = (from UnidadEntrega in context.UnidadEntregas
+                                 join EstatusUnidad in context.EstatusUnidads on UnidadEntrega.IdEstatusUnidad equals EstatusUnidad.IdEstatus
+
                                  select new
                                  {
                                      IdUnidad = UnidadEntrega.IdUnidad,
                                      NumeroPlaca = UnidadEntrega.NumeroPlaca,
-                                    
-                                    
+                                     Modelo = UnidadEntrega.Modelo,
+                                     Marca = UnidadEntrega.Marca,
+                                     AnioFabricacion = UnidadEntrega.AnioFabricacion,
+                                     IdEstatusUnidad = UnidadEntrega.IdEstatusUnidad,
+                                     Estatus = UnidadEntrega.IdEstatusUnidadNavigation.Estatus,
                                  });
 
                     unidadEntrega.Objects = new List<object>();
@@ -49,6 +54,12 @@ namespace BL
                             UnidadEntrega unidadEntregaResult = new UnidadEntrega();
                             unidadEntregaResult.IdUnidad = obj.IdUnidad;
                             unidadEntregaResult.NumeroPlaca = obj.NumeroPlaca;
+                            unidadEntregaResult.Modelo = obj.Modelo;
+                            unidadEntregaResult.Marca = obj.Marca;
+                            unidadEntregaResult.AnioFabricacion = obj.AnioFabricacion;
+                            unidadEntregaResult.EstatusUnidad = new BL.EstatusUnidad();
+                            unidadEntregaResult.EstatusUnidad.IdEstatus = obj.IdEstatusUnidad;
+                            unidadEntregaResult.EstatusUnidad.Estatus = obj.Estatus;
                             unidadEntrega.Objects.Add(unidadEntregaResult);
                         }
                         unidadEntrega.Correct = true;
@@ -66,5 +77,8 @@ namespace BL
 
             return unidadEntrega; ;
         }
+
+
+        
     }
 }

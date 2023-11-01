@@ -188,7 +188,7 @@ namespace BL
                     repartidorResult.IdUnidad = repartidor.UnidadEntrega.IdUnidad;
                     repartidorResult.Telefono = repartidor.Telefono;
                     repartidorResult.FechaIngreso = repartidor.FechaIngreso;
-                    repartidorResult.Fotografia = repartidor.Fotografia;
+                    //repartidorResult.Fotografia = repartidor.Fotografia;
                     context.Repartidors.Add(repartidorResult);
                     int filasAfectadas = context.SaveChanges();
                     if (filasAfectadas > 0)

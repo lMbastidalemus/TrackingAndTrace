@@ -33,13 +33,13 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=LEMUSHUAWEI\\SQLEXPRESS; Database= TrackingAndTraceNetCore; TrustServerCertificate=True; Trusted_Connection=True; User ID=LEMUSHUAWEI\\lemus; Password=;");
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-7SN4MG5E; Database= TrackingAndTraceNetCore; TrustServerCertificate=True; Trusted_Connection=True; User ID=sa; Password=pass@word1;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Entrega>(entity =>
         {
-            entity.HasKey(e => e.IdEntrega).HasName("PK__Entrega__C852F55370C349E1");
+            entity.HasKey(e => e.IdEntrega).HasName("PK__Entrega__C852F553C790B650");
 
             entity.ToTable("Entrega");
 
@@ -48,22 +48,22 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
             entity.HasOne(d => d.IdEstatusEntregaNavigation).WithMany(p => p.Entregas)
                 .HasForeignKey(d => d.IdEstatusEntrega)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Entrega__IdEstat__68487DD7");
+                .HasConstraintName("FK__Entrega__IdEstat__22AA2996");
 
             entity.HasOne(d => d.IdPaqueteNavigation).WithMany(p => p.Entregas)
                 .HasForeignKey(d => d.IdPaquete)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Entrega__IdPaque__66603565");
+                .HasConstraintName("FK__Entrega__IdPaque__20C1E124");
 
             entity.HasOne(d => d.IdRepartidorNavigation).WithMany(p => p.Entregas)
                 .HasForeignKey(d => d.IdRepartidor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Entrega__IdRepar__6754599E");
+                .HasConstraintName("FK__Entrega__IdRepar__21B6055D");
         });
 
         modelBuilder.Entity<EstatusEntrega>(entity =>
         {
-            entity.HasKey(e => e.IdEstatus).HasName("PK__EstatusE__B32BA1C7683AFEB1");
+            entity.HasKey(e => e.IdEstatus).HasName("PK__EstatusE__B32BA1C743B7001B");
 
             entity.ToTable("EstatusEntrega");
 
@@ -74,7 +74,7 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
         modelBuilder.Entity<EstatusUnidad>(entity =>
         {
-            entity.HasKey(e => e.IdEstatus).HasName("PK__EstatusU__B32BA1C7AEA680A7");
+            entity.HasKey(e => e.IdEstatus).HasName("PK__EstatusU__B32BA1C751226057");
 
             entity.ToTable("EstatusUnidad");
 
@@ -85,7 +85,7 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
         modelBuilder.Entity<Paquete>(entity =>
         {
-            entity.HasKey(e => e.IdPaquete).HasName("PK__Paquete__DE278F8B0A65E8EB");
+            entity.HasKey(e => e.IdPaquete).HasName("PK__Paquete__DE278F8BF69098A7");
 
             entity.ToTable("Paquete");
 
@@ -106,7 +106,7 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
         modelBuilder.Entity<Repartidor>(entity =>
         {
-            entity.HasKey(e => e.IdRepartidor).HasName("PK__Repartid__BF0B3B9AA514DCDA");
+            entity.HasKey(e => e.IdRepartidor).HasName("PK__Repartid__BF0B3B9AFF1A7D16");
 
             entity.ToTable("Repartidor");
 
@@ -128,12 +128,12 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
             entity.HasOne(d => d.IdUnidadNavigation).WithMany(p => p.Repartidors)
                 .HasForeignKey(d => d.IdUnidad)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Repartido__IdUni__6383C8BA");
+                .HasConstraintName("FK__Repartido__IdUni__1BFD2C07");
         });
 
         modelBuilder.Entity<Rol>(entity =>
         {
-            entity.HasKey(e => e.IdRol).HasName("PK__Rol__2A49584CE2BA963D");
+            entity.HasKey(e => e.IdRol).HasName("PK__Rol__2A49584C87437796");
 
             entity.ToTable("Rol");
 
@@ -144,7 +144,7 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
         modelBuilder.Entity<UnidadEntrega>(entity =>
         {
-            entity.HasKey(e => e.IdUnidad).HasName("PK__UnidadEn__437725E6A6FE899F");
+            entity.HasKey(e => e.IdUnidad).HasName("PK__UnidadEn__437725E6F5F8D5FA");
 
             entity.ToTable("UnidadEntrega");
 
@@ -158,12 +158,12 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
             entity.HasOne(d => d.IdEstatusUnidadNavigation).WithMany(p => p.UnidadEntregas)
                 .HasForeignKey(d => d.IdEstatusUnidad)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__UnidadEnt__IdEst__60A75C0F");
+                .HasConstraintName("FK__UnidadEnt__IdEst__1920BF5C");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__5B65BF97CB7D04AB");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__5B65BF979E000532");
 
             entity.ToTable("Usuario");
 
@@ -186,10 +186,11 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
 
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdRol)
-                .HasConstraintName("FK__Usuario__IdRol__4BAC3F29");
+                .HasConstraintName("FK__Usuario__IdRol__1273C1CD");
         });
 
         OnModelCreatingPartial(modelBuilder);
+    
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
