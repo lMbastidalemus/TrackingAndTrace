@@ -22,6 +22,5 @@ public partial class Usuario
     public string ApellidoMaterno { get; set; } = null!;
 
     public virtual Rol? IdRolNavigation { get; set; }
-
     public string Tipo { get; set; }
 }

@@ -190,7 +190,6 @@ public partial class TrackingAndTraceNetCoreContext : DbContext
         });
 
         OnModelCreatingPartial(modelBuilder);
-    
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

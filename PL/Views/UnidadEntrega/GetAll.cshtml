@@ -1,5 +1,7 @@
 ﻿@model BL.UnidadEntrega
 
+ <a  class="btn btn-success" href="@Url.Action("Form", "UnidadEntrega")">Agregar</a>
+                   
 <div class="table">
     <table class="table">
         <thead>
@@ -26,8 +28,9 @@
                     <td>@unidadEntrega.AnioFabricacion</td>
                     <td>@unidadEntrega.EstatusUnidad.Estatus</td>
                       <td>
-                        <a  class="btn btn-danger" href="@Url.Action("Delete", "UnidadEntrega", new {IdUnidad= unidadEntrega.IdUnidad})" onclick="return confirm('Seguro de eliminar?')">Eliminar</a>
+                        <a  class="btn btn-danger" href="@Url.Action("Delete", "UnidadEntrega", new {IdUnidad= unidadEntrega.IdUnidad})", onclick="return confirm('Seguro de eliminar?');">Eliminar</a>
                     </td>
+                      
                 </tr>
             }
         </tbody>

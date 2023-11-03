@@ -46,10 +46,9 @@ namespace PL.Controllers
         {
             Repartidor repartidor = new Repartidor();
             repartidor.UnidadEntrega = new UnidadEntrega();
-            repartidor.UnidadEntrega.EstatusUnidad = new EstatusUnidad();
+          
             UnidadEntrega repartidorEntrega = BL.UnidadEntrega.GetAll();
-            EstatusUnidad estatusUnidad = BL.EstatusUnidad.GetAll();
-
+          
             if (IdRepartidor != null)
             {
                 Repartidor repartidorResult = BL.Repartidor.GetById(IdRepartidor.Value);
@@ -57,14 +56,16 @@ namespace PL.Controllers
                 {
                     repartidor = (Repartidor)repartidorResult.Object;
                     repartidor.UnidadEntrega.Unidades = repartidorEntrega.Objects;
-                    repartidor.UnidadEntrega.EstatusUnidad.EstatusUnidades = estatusUnidad.Objects;
+                  
                 }
             }
             repartidor.UnidadEntrega.Unidades = repartidorEntrega.Objects;
-            repartidor.UnidadEntrega.EstatusUnidad.EstatusUnidades = estatusUnidad.Objects;
+          
             return View(repartidor);
 
         }
+
+        
 
         [HttpPost]
         public ActionResult Form(Repartidor repartidor)

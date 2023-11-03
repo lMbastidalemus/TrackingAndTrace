@@ -1,0 +1,54 @@
+﻿@model BL.UnidadEntrega
+
+
+@using (Html.BeginForm("Form", "UnidadEntrega", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+  @Html.HiddenFor(model => model.IdUnidad)
+
+    <form class="form-control">
+        <div class="row" style="margin-left:12rem">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.NumeroPlaca)
+                <br />
+                @Html.TextBoxFor(model => model.NumeroPlaca)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Modelo)
+                <br />
+                @Html.TextBoxFor(model => model.Modelo)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Marca)
+                <br />
+                @Html.TextBoxFor(model => model.Marca)
+            </div>
+           
+        </div>
+
+        <div class="row" style="margin-left:20rem;margin-top:5rem">
+           <div class="col-md-3">
+                @Html.LabelFor(model => model.AnioFabricacion)
+                <br />
+                @Html.TextBoxFor(model => model.AnioFabricacion)
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.EstatusUnidad.IdEstatus)
+                <br />
+                @Html.DropDownListFor(model => model.EstatusUnidad.IdEstatus, new SelectList(Model.EstatusUnidad.EstatusUnidades, "IdEstatus", "Estatus"), "Selecciona el Estatus")
+            </div>
+           
+
+        </div>
+
+
+
+        <div class="row" style="margin-left:30rem">
+            <div class="col-md-6" style="padding:4rem">
+                <button type="submit" class="btn btn-success ">Agregar Repartidor</button>
+
+            </div>
+
+        </div>
+
+    </form>
+}

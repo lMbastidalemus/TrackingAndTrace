@@ -31,11 +31,7 @@
                 <br />
                 @Html.DropDownListFor(model => model.UnidadEntrega.IdUnidad, new SelectList(Model.UnidadEntrega.Unidades, "IdUnidad", "NumeroPlaca"), "selecciona una Unidad")
             </div>
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.UnidadEntrega.EstatusUnidad.IdEstatus)
-                <br />
-                @Html.DropDownListFor(model => model.UnidadEntrega.EstatusUnidad.IdEstatus, new SelectList(Model.UnidadEntrega.EstatusUnidad.EstatusUnidades, "IdEstatus", "Estatus"), "Selecciona el Estatus")
-            </div>
+            
             <div class="col-md-2" style="margin-left:10rem">
                 @Html.LabelFor(model => model.Telefono)
                 <br />

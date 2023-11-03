@@ -101,8 +101,7 @@ namespace BL
                                      NumeroPlaca = Repartidor.IdUnidadNavigation.NumeroPlaca,
                                      Telefono = Repartidor.Telefono,
                                      FechaIngreso = Repartidor.FechaIngreso,
-                                     IdEstatusUnidad = Repartidor.IdUnidadNavigation.IdEstatusUnidad,
-                                     Estatus = Repartidor.IdUnidadNavigation.IdEstatusUnidadNavigation.Estatus
+                                     
                                      //Fotografia = Repartidor.Fotografia
                                  }).SingleOrDefault();
 
@@ -120,8 +119,7 @@ namespace BL
                         repartidorResult.UnidadEntrega.NumeroPlaca = query.NumeroPlaca;
                         repartidorResult.Telefono = query.Telefono;
                         repartidorResult.FechaIngreso = DateTime.Parse(query.FechaIngreso.ToString());
-                        repartidorResult.UnidadEntrega.EstatusUnidad.IdEstatus = query.IdEstatusUnidad;
-                        repartidorResult.UnidadEntrega.EstatusUnidad.Estatus = query.Estatus;
+                     
                         //repartidorResult.Fotografia = query.Fotografia;
                         repartidor.Object  = repartidorResult;
 
@@ -185,7 +183,7 @@ namespace BL
                     repartidorResult.Nombre = repartidor.Nombre;
                     repartidorResult.ApellidoPaterno = repartidor.ApellidoPaterno;
                     repartidorResult.ApellidoMaterno = repartidor.ApellidoMaterno;
-                    repartidorResult.IdUnidad = repartidor.UnidadEntrega.IdUnidad;
+                    repartidorResult.IdUnidad = repartidor.UnidadEntrega.IdUnidad.Value;
                     repartidorResult.Telefono = repartidor.Telefono;
                     repartidorResult.FechaIngreso = repartidor.FechaIngreso;
                     //repartidorResult.Fotografia = repartidor.Fotografia;
@@ -228,7 +226,7 @@ namespace BL
                         query.ApellidoPaterno = repartidor.ApellidoPaterno;
                         query.ApellidoMaterno = repartidor.ApellidoMaterno;
                       
-                        query.IdUnidad = repartidor.UnidadEntrega.IdUnidad;
+                        query.IdUnidad = repartidor.UnidadEntrega.IdUnidad.Value;
                         query.Telefono = repartidor.Telefono;
                         query.FechaIngreso = repartidor.FechaIngreso;
                         //query.Fotografia = repartidor.Fotografia;
