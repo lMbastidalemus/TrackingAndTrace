@@ -13,7 +13,7 @@ namespace SL.Controllers
         public IActionResult GetAll ()
         {
             UnidadEntrega result = BL.UnidadEntrega.GetAll();
-            if (result.Correct.Value)
+            if (result.Correct)
             {
                 return Ok(result);
             }
@@ -28,7 +28,7 @@ namespace SL.Controllers
         public IActionResult GetById(int IdUnidad)
         {
             UnidadEntrega result = BL.UnidadEntrega.GetById(IdUnidad);
-            if (result.Correct.Value)
+            if (result.Correct)
             {
                 return Ok(result);
             }
@@ -44,7 +44,7 @@ namespace SL.Controllers
         public IActionResult Add(UnidadEntrega unidad)
         {
             UnidadEntrega result = BL.UnidadEntrega.Add(unidad);
-            if (result.Correct.Value)
+            if (result.Correct)
             {
                 return Ok(result);
             }
@@ -60,7 +60,7 @@ namespace SL.Controllers
         {
             unidad.IdUnidad = IdUnidad;
             UnidadEntrega result = BL.UnidadEntrega.Update(unidad);
-            if (result.Correct.Value)
+            if (result.Correct)
             {
                 return Ok(result);
             }
@@ -75,8 +75,9 @@ namespace SL.Controllers
         [HttpDelete]
         public IActionResult Delete(int IdUnidad)
         {
+           
             UnidadEntrega result = BL.UnidadEntrega.Delete(IdUnidad);
-            if (result.Correct.Value)
+            if (result.Correct)
             {
                 return Ok(result);
             }

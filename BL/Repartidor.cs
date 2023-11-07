@@ -183,7 +183,7 @@ namespace BL
                     repartidorResult.Nombre = repartidor.Nombre;
                     repartidorResult.ApellidoPaterno = repartidor.ApellidoPaterno;
                     repartidorResult.ApellidoMaterno = repartidor.ApellidoMaterno;
-                    repartidorResult.IdUnidad = repartidor.UnidadEntrega.IdUnidad.Value;
+                    repartidorResult.IdUnidad = repartidor.UnidadEntrega.IdUnidad;
                     repartidorResult.Telefono = repartidor.Telefono;
                     repartidorResult.FechaIngreso = repartidor.FechaIngreso;
                     //repartidorResult.Fotografia = repartidor.Fotografia;
@@ -226,7 +226,7 @@ namespace BL
                         query.ApellidoPaterno = repartidor.ApellidoPaterno;
                         query.ApellidoMaterno = repartidor.ApellidoMaterno;
                       
-                        query.IdUnidad = repartidor.UnidadEntrega.IdUnidad.Value;
+                        query.IdUnidad = repartidor.UnidadEntrega.IdUnidad;
                         query.Telefono = repartidor.Telefono;
                         query.FechaIngreso = repartidor.FechaIngreso;
                         //query.Fotografia = repartidor.Fotografia;

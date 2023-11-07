@@ -71,7 +71,20 @@ namespace PL.Controllers
         public ActionResult Form(Repartidor repartidor)
         {
 
-           
+            repartidor.Repartidores = new List<object>();
+            repartidor.Nombre = "";
+            repartidor.ApellidoPaterno = "";
+            repartidor.ApellidoMaterno = "";
+            repartidor.UnidadEntrega.NumeroPlaca = "";
+            repartidor.UnidadEntrega.Marca = "";
+            repartidor.Telefono = "";
+            repartidor.FechaIngreso = new DateTime();
+            repartidor.Correct = false;
+            repartidor.Fotografia = "";
+            repartidor.UnidadEntrega = new UnidadEntrega();
+            repartidor.UnidadEntrega.Unidades = new List<object>();
+
+            
             if (repartidor.IdRepartidor == 0)
             {
                 
@@ -79,7 +92,7 @@ namespace PL.Controllers
                 {
                    
                     client.BaseAddress = new Uri("http://localhost:5019/api/Repartidor/");
-                    var task = client.PostAsJsonAsync<BL.Repartidor>("", repartidor);
+                    var task = client.PostAsJsonAsync<BL.Repartidor>("Add", repartidor);
                     task.Wait();
 
                     var taskResult = task.Result;

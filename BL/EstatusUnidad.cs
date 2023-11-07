@@ -10,7 +10,7 @@ namespace BL
     public class EstatusUnidad
     {
         public int IdEstatus { get; set; }
-        public string Estatus { get; set; }
+        public string? Estatus { get; set; }
         public List<object> Objects { get; set; }
         public List<object> EstatusUnidades { get; set; }
 

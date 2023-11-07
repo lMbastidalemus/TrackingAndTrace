@@ -13,18 +13,18 @@ namespace BL
     public class UnidadEntrega
     {
 
-        public int? IdUnidad { get; set; }
-        public string? NumeroPlaca { get; set; }
-        public int? Modelo { get; set; }
-        public string? Marca { get; set; }
-        public int? AnioFabricacion { get; set; }
-        public List<object>? Unidades { get; set; }
+        public int IdUnidad { get; set; }
+        public string NumeroPlaca { get; set; }
+        public int Modelo { get; set; }
+        public string Marca { get; set; }
+        public int AnioFabricacion { get; set; }
+        public List<object> Unidades { get; set; }
 
         public BL.EstatusUnidad EstatusUnidad { get; set; }
-        public string? Exception { get; set; }
+        public string Exception { get; set; }
 
-        public List<object>? Objects { get; set; }
-        public bool? Correct { get; set; }
+        public List<object> Objects { get; set; }
+        public bool Correct { get; set; }
         public object? Object { get; set; }
 
         //public static UnidadEntrega GetAll()
